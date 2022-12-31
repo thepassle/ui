@@ -49,27 +49,17 @@ export function contextMenu(config = {
         await compute(target, dialog);
       }
 
-      async function onKeyDown(e) {
-        const focusableElements = [...dialog.querySelectorAll(FOCUSABLE_ELEMENTS)];
-        const END = focusableElements.length - 1;
+      function onKeyDown(e) {
+        const focusableElements = dialog.querySelectorAll(FOCUSABLE_ELEMENTS);
         const START = 0;
-        const VERTICAL = config.orientation === 'vertical';
-        index = focusableElements.findIndex(el => el === document.activeElement);
-
-        switch(e.keyCode) {
-          case VERTICAL ? KEYCODES.UP : KEYCODES.LEFT:
-            if(index === START) {
-              index = END;
-            } else {
-              index--;
-            }
+        const END = focusableElements.length - 1;
+    
+        switch (e.keyCode) {
+          case KEYCODES.UP:
+            index--;
             break;
-          case VERTICAL ? KEYCODES.DOWN : KEYCODES.RIGHT:
-            if(index === END) {
-              index = START;
-            } else {
-              index++;
-            }
+          case KEYCODES.DOWN:
+            index++;
             break;
           case KEYCODES.HOME:
             index = START;
@@ -78,7 +68,25 @@ export function contextMenu(config = {
             index = END;
             break;
         }
-
+    
+        if (!e.shiftKey && e.keyCode === KEYCODES.TAB) {
+          index++;
+          e.preventDefault();
+        }
+    
+        if (e.shiftKey && e.keyCode === KEYCODES.TAB) {
+          index--;
+          e.preventDefault();
+        }
+    
+        if (index < START) {
+          index = END;
+        }
+    
+        if (index > END) {
+          index = START;
+        }
+    
         focusableElements[index].focus();
       }
       
