@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        color-scheme: dark;
+        --ui-neutral: rgb(255, 255, 255);
+
+        /* https://mdigi.tools/color-shades/#ffa600 */
+        --ui-main-0: #fff6e5;
+        --ui-main-1: #ffe4b3;
+        --ui-main-2: #ffd380;
+        --ui-main-3: #ffc14d;
+        --ui-main-4: #ffa600;
+        --ui-main-5: #e69500;
+        --ui-main-6: #b37400;
+        --ui-main-7: #805300;
+        --ui-main-8: #4d3200;
+        --ui-main-9: #1a1100;
+
+        --ui-bg-0: #f1f2f3;
+        --ui-bg-1: #d6d8db;
+        --ui-bg-2: #bbbec3;
+        --ui-bg-3: #a0a3ab;
+        --ui-bg-4: #858993;
+        --ui-bg-5: #6c707a;
+        --ui-bg-6: #54575f;
+        --ui-bg-7: #3c3e44;
+        --ui-bg-8: #242529;
+        --ui-bg-9: #0c0c0e;
+        
+        /** todo increment the bg colors everywhere (in the components) by one, it looks better */
+        --ui-bg-0: #f1f2f3;
+        --ui-bg-1: #d6d8db;
+        --ui-bg-2: #bbbec3;
+        --ui-bg-2: #a0a3ab;
+        --ui-bg-3: #858993;
+        --ui-bg-4: #6c707a;
+        --ui-bg-5: #54575f;
+        --ui-bg-6: #3c3e44;
+        --ui-bg-7: #242529;
+        --ui-bg-9: #0c0c0e;
+      }
+
+      @media (min-width: 480px) {
+        dialog[app-tools]#context {
+          width: 150px;
+          height: min-content;
+          opacity: 0;
+          transform: scale(0.7);
+          transform-origin: top right;
+          transition: opacity .1s ease-out, transform .1s ease-out, scale .1s ease-out;
+          border-radius: 8px;
+          border: none;
+          background-color: var(--ui-bg-6);
+        }
+
+        dialog[app-tools]#context button:hover {
+          background: var(--ui-bg-5);
+        }
+
+        dialog[app-tools]#context button:active,
+        dialog[app-tools]#context button:focus-visible {
+          background: var(--ui-bg-5);
+        }
+        dialog[app-tools]#context button:focus-visible {
+          border-radius: 4px;
+          box-shadow: var(--ui-main-4) 0px 0px 12px, var(--ui-main-4) 0px 0px 0px 1px;
+          outline: 1px;
+          transition: box-shadow 0.1s ease-in-out 0s;
+        }
+
+        dialog[app-tools]#context button {
+          display: block;
+          width: 100%;
+          border-bottom: solid 1px var(--ui-bg-2);
+          background: var(--ui-bg-6);
+          border: none;
+          padding: 8px;
+          margin-bottom: 6px;
+        }
+
+        dialog[app-tools]#context button:last-child {
+          margin-bottom: 0px;
+        }
+  
+        dialog[app-tools][open]#context {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      body {
+        background-color: var(--ui-bg-5);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // for floating-ui -.-
+      window.process = {
+        env: {
+          NODE_ENV: 'prod'
+        }
+      }
+    </script>
+    <ui-disclosure>
+      <div slot="label">click</div>
+      <div slot="detail">
+        <p>foo</p>
+        <p>foo</p>
+        <p>foo</p>
+        <p>foo</p>
+        <p>foo</p>
+      </div>
+    </ui-disclosure>
+    <ui-spinner></ui-spinner>
+    <ui-card label="hello">
+      <p>foo</p>
+      <p>foo</p>
+      <p>foo</p>
+    </ui-card>
+    <ui-card label="hello">
+      <ui-icon-button slot="icon">
+        <button id="context1">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </button>
+      </ui-icon-button>
+      <p>foo</p>
+      <p>foo</p>
+      <p>foo</p>
+    </ui-card>
+    
+    <ui-icon-button>
+      <button>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+      </button>
+    </ui-icon-button>
+
+    <ui-icon-button>
+      <button>
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-x"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <line stroke="white" x1="18" y1="6" x2="6" y2="18" />
+          <line stroke="white" x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </ui-icon-button>
+    
+    <ui-bottom-nav></ui-bottom-nav>
+    <script type="module">
+      import './components/disclosure/index.js';
+      import './components/spinner/index.js';
+      import './components/bottom-nav/index.js';
+      import './components/card/index.js';
+      import './components/icon-button/index.js';
+
+      import { home, shop, compass, admin, location } from './icons/index.js';
+
+      import { html } from 'lit';
+      import { Dialog } from '@thepassle/app-tools/dialog.js';
+      import { contextMenu } from './dialog/contextMenu.js';
+
+      const dialog = new Dialog({
+        context: contextMenu()
+      });
+
+
+      context1.addEventListener('click', (e) => {
+        dialog.open({id: 'context', parameters: {
+          target: e,
+          template: () => html`
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+          `
+        }})
+      })
+
+      const bottomNav = document.querySelector('ui-bottom-nav');
+      bottomNav.menu = [
+        {
+          href: '/',
+          label: 'Home',
+          icon: home
+        },
+        {
+          href: '/shop',
+          label: 'Shop',
+          icon: shop
+        },
+        {
+          href: '/foo',
+          label: 'Foo',
+          icon: compass
+        },
+        {
+          href: '/admin',
+          label: 'Admin',
+          icon: admin,
+          condition: () => false
+        },
+        {
+          href: '/bar',
+          label: 'Bar',
+          icon: location,
+          condition: () => true
+        },
+      ]
+    </script>
+  </body>
+</html>
