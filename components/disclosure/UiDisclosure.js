@@ -1,11 +1,10 @@
 import { LitElement, html, css } from 'lit';
 import {
   spacer4, 
+  spacer8, 
   spacer16, 
-  spacer24, 
-  main4, 
+  main5, 
   neutral, 
-  bg3, 
   bg4, 
   bg5, 
   bg6, 
@@ -33,17 +32,24 @@ export class UiDisclosure extends LitElement {
 
   static styles = css`
     :host {
+      margin-top: ${spacer4};
+      margin-bottom: ${spacer4};
       display: block;
       width: 100%;
       height: auto;
       border-bottom: lightgrey solid 1px;
-      background-color: ${bg5};
+      background-color: ${bg6};
     }
+    :host([expanded]) {
+      border-bottom: none;
+    }
+
     :host slot[name="detail"] {
       display: none;
     }
     :host([expanded]) slot[name="detail"] {
       display: block;
+      margin-top: ${spacer4};
     }
 
     button {
@@ -57,7 +63,7 @@ export class UiDisclosure extends LitElement {
       font-size: 16px;
       color: ${neutral};
 
-      font-weight: 500;
+      font-weight: 700;
       padding-top: ${spacer16};
       padding-bottom: ${spacer16};
       padding-left: ${spacer4};
@@ -78,7 +84,7 @@ export class UiDisclosure extends LitElement {
     :host([expanded]) svg {
       transition: all 0.2s ease-in-out;
       transform: rotate(90deg);
-      color: ${main4};
+      color: ${main5};
     }
 
     :host([expanded]) span {
@@ -87,11 +93,11 @@ export class UiDisclosure extends LitElement {
 
     button:hover,
     button:focus-visible {
-      background-color: ${bg4};
+      background-color: ${bg5};
     }
 
     button:active {
-      background-color: ${bg3};
+      background-color: ${bg4};
     }
 
     button:focus-visible {

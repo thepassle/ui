@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { when } from '@thepassle/app-tools/utils/index.js';
-import { spacer4, bg3, bg4, bg5, neutral, main4, focus } from '../../style.js';
+import { spacer4, bg4, bg5, bg6, neutral, main5, focus } from '../../style.js';
 
 /**
  * [
@@ -12,13 +12,14 @@ import { spacer4, bg3, bg4, bg5, neutral, main4, focus } from '../../style.js';
 
 export class UiBottomNav extends LitElement {
   static properties = {
-    menu: {type: Object}
+    menu: {type: Object},
+    activeLink: {type: String},
   };
 
   static styles = css`
     :host {
       width: 100%;
-      background-color: ${bg5};
+      background-color: ${bg6};
       height: 60px;
       padding-bottom: env(safe-area-inset-bottom);
       position: fixed;
@@ -64,6 +65,7 @@ export class UiBottomNav extends LitElement {
       align-items: center;
     }
 
+    nav ul li button,
     nav ul li a {
       flex: 1;
       font-size: 20px;
@@ -80,17 +82,26 @@ export class UiBottomNav extends LitElement {
       right: 24px;
       top: 4px;
     }
+
+    nav ul li button {
+      background: none;
+      border: none;
+    }
     
+    nav ul li button:hover,
+    nav ul li button:focus-visible,
     nav ul li a:hover,
     nav ul li a:focus-visible {
-      background-color: ${bg4};
+      background-color: ${bg5};
       border-radius: 10px;
     }
 
+    nav ul li button:active,
     nav ul li a:active {
-      background-color: ${bg3};
+      background-color: ${bg4};
     }
 
+    nav ul li button:focus-visible,
     nav ul li a:focus-visible {
       border-radius: 10px;
       ${focus()}
@@ -107,17 +118,17 @@ export class UiBottomNav extends LitElement {
     }
 
     .active svg {
-      fill:${main4};
+      fill:${main5};
     }
 
     .active span {
-      fill: ${main4}!important;
+      fill: ${main5}!important;
       font-weight: 500;
     }
   `;
 
   render() {
-    const activeLink = new URL(window.location.href).pathname;
+    const activeLink = this.activeLink || new URL(window.location.href).pathname;
 
     return html`
       <header>
@@ -127,14 +138,24 @@ export class UiBottomNav extends LitElement {
               ${this.menu?.map((item) => html`
                 ${when(item?.condition ? item.condition() : true, () => html`
                   <li>
-                    <a
-                      class="${activeLink === item.href ? 'active' : ''}"
-                      href="${item.href}"
-                      aria-label="${item.label}"
-                    >
-                      ${item.icon}
-                      <span>${item.label}</span>
-                    </a>
+                    ${when(item.action, () => html`
+                      <button
+                        aria-expanded="false"
+                        @click=${item.action}
+                        class="${activeLink.startsWith(item.href) ? 'active' : ''}"
+                      >
+                        ${item.icon}
+                        <span>${item.label}</span>
+                      </button>
+                    `, () => html`
+                      <a
+                        class="${activeLink === item.href ? 'active' : ''}"
+                        href="${item.href}"
+                      >
+                        ${item.icon}
+                        <span>${item.label}</span>
+                      </a>
+                    `)}
                   </li>
                 `)}
               `)}

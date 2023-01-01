@@ -12,6 +12,28 @@ export const main7 = css`var(--ui-main-7)`;
 export const main8 = css`var(--ui-main-8)`;
 export const main9 = css`var(--ui-main-9)`;
 
+export const secondary0 = css`var(--ui-secondary-0)`;
+export const secondary1 = css`var(--ui-secondary-1)`;
+export const secondary2 = css`var(--ui-secondary-2)`;
+export const secondary3 = css`var(--ui-secondary-3)`;
+export const secondary4 = css`var(--ui-secondary-4)`;
+export const secondary5 = css`var(--ui-secondary-5)`;
+export const secondary6 = css`var(--ui-secondary-6)`;
+export const secondary7 = css`var(--ui-secondary-7)`;
+export const secondary8 = css`var(--ui-secondary-8)`;
+export const secondary9 = css`var(--ui-secondary-9)`;
+
+export const error0 = css`var(--ui-error-0)`;
+export const error1 = css`var(--ui-error-1)`;
+export const error2 = css`var(--ui-error-2)`;
+export const error3 = css`var(--ui-error-3)`;
+export const error4 = css`var(--ui-error-4)`;
+export const error5 = css`var(--ui-error-5)`;
+export const error6 = css`var(--ui-error-6)`;
+export const error7 = css`var(--ui-error-7)`;
+export const error8 = css`var(--ui-error-8)`;
+export const error9 = css`var(--ui-error-9)`;
+
 export const neutral = css`var(--ui-neutral)`;
 
 /** BG COLORS */
@@ -60,9 +82,9 @@ export const elevation24 = () => css`box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12),
 
 /** FOCUS */
 export const DEFAULT_FOCUS_COLOR = css`rgb(159 202 234)`;
-export const focus = (color = css`var(--ui-main-4)`) => css`
+export const focus = (color = css`var(--ui-secondary-4)`) => css`
   border-radius: 4px;
-  box-shadow: ${color} 0px 0px 12px, ${color} 0px 0px 0px 1px;
-  outline: 1px;
+  box-shadow: ${color} 0px 0px 12px, ${color} 0px 0px 0px 3px;
+  outline: 2px;
   transition: box-shadow 0.1s ease-in-out 0s;
 `;

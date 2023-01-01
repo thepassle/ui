@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { main4, spacer16 } from '../../style.js';
+import { main5, spacer16 } from '../../style.js';
 import '@generic-components/components/spinner.js';
 
 export class UiSpinner extends LitElement {
@@ -9,7 +9,7 @@ export class UiSpinner extends LitElement {
       width: 100%;
     }
     generic-spinner {
-      --generic-spinner-color: ${main4};
+      --generic-spinner-color: ${main5};
     }
     .spinner {
       display:flex;

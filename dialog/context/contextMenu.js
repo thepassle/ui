@@ -1,32 +1,8 @@
-import { computePosition } from "@floating-ui/dom";
 import { render } from 'lit';
 import { media } from '@thepassle/app-tools/utils/media.js';
 import { debounceAtFrame } from '@thepassle/app-tools/utils/async.js';
-
-const FOCUSABLE_ELEMENTS = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)';
-const KEYCODES = {
-  TAB: 9,
-  ENTER: 13,
-  SHIFT: 16,
-  ESC: 27,
-  SPACE: 32,
-  END: 35,
-  HOME: 36,
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40,
-};
-
-async function compute(target, dialog) {
-  const { x, y } = await computePosition(target, dialog, { 
-    placement: 'bottom-end',
-  });
-  Object.assign(dialog.style, {
-    marginLeft: `${x}px`,
-    marginTop: `${y}px`,
-  });
-}
+import { compute } from './positioning.js';
+import { FOCUSABLE_ELEMENTS, KEYCODES } from './CONSTANTS.js';
 
 /**
  * @param {{
@@ -38,18 +14,21 @@ export function contextMenu(config = {
 }) {
   let handleResize;
   let index = 0;
+  let target;
+
   return {
     opening: async ({dialog, parameters}) => {
       dialog.id = 'context';
       render(parameters.template(), dialog.form);
       
-      const target = parameters.target.path.find(e => e.localName === 'button') || parameters.target;
+      target = parameters.target.path.find(e => e.localName === 'button') || parameters.target;
+      target.setAttribute('aria-expanded', 'true');
 
       if (!media.MAX.XS()) {
         await compute(target, dialog);
       }
 
-      function onKeyDown(e) {
+      function onMenuKeyDown(e) {
         const focusableElements = dialog.querySelectorAll(FOCUSABLE_ELEMENTS);
         const START = 0;
         const END = focusableElements.length - 1;
@@ -103,10 +82,11 @@ export function contextMenu(config = {
         }
       });
       
-      dialog.addEventListener('keydown', onKeyDown);
+      dialog.addEventListener('keydown', onMenuKeyDown);
       window.addEventListener('resize', handleResize);
     },
     closing: () => {
+      target.setAttribute('aria-expanded', 'false');
       index = 0;
       window.removeEventListener('resize', handleResize);
     }

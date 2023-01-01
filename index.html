@@ -1,5 +1,6 @@
 <html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <style>
@@ -9,44 +10,151 @@
       }
 
       :root {
+        font-family: sans-serif;
         color-scheme: dark;
         --ui-neutral: rgb(255, 255, 255);
 
         /* https://mdigi.tools/color-shades/#ffa600 */
-        --ui-main-0: #fff6e5;
-        --ui-main-1: #ffe4b3;
-        --ui-main-2: #ffd380;
-        --ui-main-3: #ffc14d;
-        --ui-main-4: #ffa600;
-        --ui-main-5: #e69500;
-        --ui-main-6: #b37400;
-        --ui-main-7: #805300;
-        --ui-main-8: #4d3200;
-        --ui-main-9: #1a1100;
 
-        --ui-bg-0: #f1f2f3;
-        --ui-bg-1: #d6d8db;
-        --ui-bg-2: #bbbec3;
-        --ui-bg-3: #a0a3ab;
-        --ui-bg-4: #858993;
-        --ui-bg-5: #6c707a;
-        --ui-bg-6: #54575f;
-        --ui-bg-7: #3c3e44;
-        --ui-bg-8: #242529;
-        --ui-bg-9: #0c0c0e;
         
-        /** todo increment the bg colors everywhere (in the components) by one, it looks better */
-        --ui-bg-0: #f1f2f3;
-        --ui-bg-1: #d6d8db;
-        --ui-bg-2: #bbbec3;
-        --ui-bg-2: #a0a3ab;
-        --ui-bg-3: #858993;
-        --ui-bg-4: #6c707a;
-        --ui-bg-5: #54575f;
-        --ui-bg-6: #3c3e44;
-        --ui-bg-7: #242529;
-        --ui-bg-9: #0c0c0e;
+        --ui-main-0:#ffffff; 
+        --ui-main-1:#feeac5; 
+        --ui-main-2:#fedc9e; 
+        --ui-main-3:#fdce77; 
+        --ui-main-4:#fcc050; 
+        --ui-main-5:#fcb93c; 
+        --ui-main-6:#ca9430; 
+        --ui-main-7:#976f24; 
+        --ui-main-8:#654a18; 
+        --ui-main-9:#32250c; 
+        --ui-secondary-0:#ffffff; 
+        --ui-secondary-1:#c2def9; 
+        --ui-secondary-2:#9ac9f5; 
+        --ui-secondary-3:#71b3f0; 
+        --ui-secondary-4:#489dec; 
+        --ui-secondary-5:#3492ea; 
+        --ui-secondary-6:#2a75bb; 
+        --ui-secondary-7:#1f588c; 
+        --ui-secondary-8:#153a5e; 
+        --ui-secondary-9:#0a1d2f; 
+        --ui-error-0:#ffffff; 
+        --ui-error-1:#f9e2e8; 
+        --ui-error-2:#f5cfd8; 
+        --ui-error-3:#f0bbc8; 
+        --ui-error-4:#eca8b9; 
+        --ui-error-5:#ea9eb1; 
+        --ui-error-6:#bb7e8e; 
+        --ui-error-7:#8c5f6a; 
+        --ui-error-8:#5e3f47; 
+        --ui-error-9:#2f2023; 
+        --ui-bg-0:#ffffff; 
+        --ui-bg-1:#d3d4d7; 
+        --ui-bg-2:#b6b8bd; 
+        --ui-bg-3:#989ba2; 
+        --ui-bg-4:#7b7e87; 
+        --ui-bg-5:#6c707a; 
+        --ui-bg-6:#565a62; 
+        --ui-bg-7:#414349; 
+        --ui-bg-8:#2b2d31; 
+        --ui-bg-9:#161618;
       }
+
+      /**
+       * MODAL STYLES
+       */
+      dialog[app-tools]#modal {
+        border-radius: 8px;
+        background: var(--ui-bg-6);
+        box-shadow: 0 0 4px 0 rgb(0 0 0 / 12%), 0 4px 4px 0 rgb(0 0 0 / 24%);
+        border: none;
+        /* padding: 16px; */
+        max-height: 700px;
+        height: fit-content;
+        width: 400px;
+        opacity: 0;
+        transform: translateY(40px) scale(0.7);
+        transition: opacity .1s ease-out, transform .1s ease-out, scale .1s ease-out;
+      }
+
+      dialog[app-tools][version="1.x"]#modal > form[app-tools][version="1.x"] {
+        width: calc(100% - 32px);
+      }
+
+      dialog[app-tools]#modal > form[app-tools] {
+        padding: 16px;
+      }
+      
+      dialog[app-tools][open]#modal {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      dialog[app-tools]#modal::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      @media (max-width: 448px) {
+        dialog[app-tools]#modal {
+          width: calc(100% - 80px);
+          height: fit-content;
+          max-height: 70%;
+        }
+      }
+
+      /**
+       * CONTEXT STYLES
+       */
+      dialog[app-tools]#context::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      @media (max-width: 480px) {
+        dialog[app-tools]#context {
+          background: var(--ui-bg-6);
+          margin-bottom: 0;
+          margin-right: 0;
+          margin-left: 0;
+          width: calc(100% - 6px);
+          border-top-left-radius: 12px;
+          border-top-right-radius: 12px;
+          border: solid 3px var(--ui-bg-6);
+          box-shadow: 0 -4px 4px 0 rgb(0 0 0 / 12%), 0 -4px 4px 0 rgb(0 0 0 / 24%);
+
+          transform: translateY(200px);
+          transition: transform .2s ease-out;
+          min-height: 200px;
+        }
+
+        dialog[app-tools][open]#context {
+          transform: translateY(0);
+          height: fit-content;
+          max-height: 350px;
+        }
+
+        dialog[app-tools]#context a {
+          color: var(--ui-neutral);
+          display: block;
+          padding: 20px 12px;
+          border-radius: 8px;
+        }
+
+        dialog[app-tools]#context a:hover {
+          background: var(--ui-bg-5);
+        }
+
+        dialog[app-tools]#context a:active,
+        dialog[app-tools]#context a:focus-visible {
+          background: var(--ui-bg-4);
+        }
+
+        dialog[app-tools]#context a:focus-visible {
+          border-radius: 4px;
+          box-shadow: var(--ui-secondary-4) 0px 0px 12px, var(--ui-secondary-4) 0px 0px 0px 3px;
+          outline: 1px;
+          transition: box-shadow 0.1s ease-in-out 0s;
+        }
+      }
+
 
       @media (min-width: 480px) {
         dialog[app-tools]#context {
@@ -60,35 +168,6 @@
           border: none;
           background-color: var(--ui-bg-6);
         }
-
-        dialog[app-tools]#context button:hover {
-          background: var(--ui-bg-5);
-        }
-
-        dialog[app-tools]#context button:active,
-        dialog[app-tools]#context button:focus-visible {
-          background: var(--ui-bg-5);
-        }
-        dialog[app-tools]#context button:focus-visible {
-          border-radius: 4px;
-          box-shadow: var(--ui-main-4) 0px 0px 12px, var(--ui-main-4) 0px 0px 0px 1px;
-          outline: 1px;
-          transition: box-shadow 0.1s ease-in-out 0s;
-        }
-
-        dialog[app-tools]#context button {
-          display: block;
-          width: 100%;
-          border-bottom: solid 1px var(--ui-bg-2);
-          background: var(--ui-bg-6);
-          border: none;
-          padding: 8px;
-          margin-bottom: 6px;
-        }
-
-        dialog[app-tools]#context button:last-child {
-          margin-bottom: 0px;
-        }
   
         dialog[app-tools][open]#context {
           opacity: 1;
@@ -96,8 +175,46 @@
         }
       }
 
+      /**
+       * Non required context styles
+       */
+      dialog[app-tools]#context button:hover {
+        background: var(--ui-bg-5);
+      }
+
+      dialog[app-tools]#context button:active,
+      dialog[app-tools]#context button:focus-visible {
+        background: var(--ui-bg-4);
+      }
+      dialog[app-tools]#context button:focus-visible {
+        border-radius: 4px;
+        box-shadow: var(--ui-secondary-4) 0px 0px 12px, var(--ui-secondary-4) 0px 0px 0px 3px;
+        outline: 1px;
+        transition: box-shadow 0.1s ease-in-out 0s;
+      }
+
+      dialog[app-tools]#context button {
+        display: block;
+        width: 100%;
+        background: var(--ui-bg-6);
+        border: none;
+        padding: 20px 12px;
+        margin-bottom: 6px;
+        border-radius: 4px;
+      }
+
+      dialog[app-tools]#context button:last-child {
+        margin-bottom: 0px;
+      }
+
+      /**
+       * NAV DIALOG
+       */
+      
+
+
       body {
-        background-color: var(--ui-bg-5);
+        background-color: var(--ui-bg-6);
       }
     </style>
   </head>
@@ -110,90 +227,57 @@
         }
       }
     </script>
-    <ui-disclosure>
-      <div slot="label">click</div>
-      <div slot="detail">
-        <p>foo</p>
-        <p>foo</p>
-        <p>foo</p>
-        <p>foo</p>
-        <p>foo</p>
-      </div>
-    </ui-disclosure>
-    <ui-spinner></ui-spinner>
-    <ui-card label="hello">
-      <p>foo</p>
-      <p>foo</p>
-      <p>foo</p>
-    </ui-card>
-    <ui-card label="hello">
-      <ui-icon-button slot="icon">
-        <button id="context1">
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        </button>
-      </ui-icon-button>
-      <p>foo</p>
-      <p>foo</p>
-      <p>foo</p>
-    </ui-card>
-    
-    <ui-icon-button>
-      <button>
-        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-      </button>
-    </ui-icon-button>
 
-    <ui-icon-button>
-      <button>
-        <svg
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-x"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" />
-          <line stroke="white" x1="18" y1="6" x2="6" y2="18" />
-          <line stroke="white" x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
-    </ui-icon-button>
-    
+    <main></main>
+
     <ui-bottom-nav></ui-bottom-nav>
     <script type="module">
-      import './components/disclosure/index.js';
-      import './components/spinner/index.js';
-      import './components/bottom-nav/index.js';
+      import './playground.js';
       import './components/card/index.js';
-      import './components/icon-button/index.js';
-
       import { home, shop, compass, admin, location } from './icons/index.js';
 
-      import { html } from 'lit';
-      import { Dialog } from '@thepassle/app-tools/dialog.js';
-      import { contextMenu } from './dialog/contextMenu.js';
+      import { html, render } from 'lit';
+      import { Router } from '@thepassle/app-tools/router.js';
 
-      const dialog = new Dialog({
-        context: contextMenu()
+      const router = new Router({
+        routes: [
+          {
+            path: '/',
+            title: 'home',
+            render: () => html`<playground-el></playground-el>`
+          },
+          {
+            path: '/shop',
+            title: 'shop',
+            render: () => html`<h1 style="max-width: 820px; margin-left:auto;margin-right:auto;">Shop</h1>`
+          },
+          {
+            path: '/foo',
+            title: 'foo',
+            render: () => html`<h1 style="max-width: 820px; margin-left:auto;margin-right:auto;">foo</h1>`
+          },
+          {
+            path: '/bar/foo',
+            title: 'bar foo',
+            render: () => html`<h1 style="max-width: 820px; margin-left:auto;margin-right:auto;">/bar/foo</h1>`
+          },
+          {
+            path: '/bar/bar',
+            title: 'bar bar',
+            render: () => html`<h1 style="max-width: 820px; margin-left:auto;margin-right:auto;">/bar/bar</h1>`
+          },
+          {
+            path: '/bar/baz',
+            title: 'bar baz',
+            render: () => html`<h1 style="max-width: 820px; margin-left:auto;margin-right:auto;">/bar/baz</h1>`
+          },
+        ]
       });
 
-
-      context1.addEventListener('click', (e) => {
-        dialog.open({id: 'context', parameters: {
-          target: e,
-          template: () => html`
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-          `
-        }})
-      })
+      router.addEventListener('route-changed', () => {
+        render(router.render(), document.querySelector('main'));
+        document.querySelector('ui-bottom-nav').activeLink = router.context.url.pathname;
+      });
 
       const bottomNav = document.querySelector('ui-bottom-nav');
       bottomNav.menu = [
@@ -208,22 +292,37 @@
           icon: shop
         },
         {
-          href: '/foo',
-          label: 'Foo',
+          href: '/bar',
+          action: (e) => {
+            window.d.open({id: 'context', parameters: {
+              target: e,
+              template: () => html`
+                <a @click=${() => window.d.close()} href="/bar/foo">foo</a>
+                <a @click=${() => window.d.close()} href="/bar/bar">bar</a>
+                <a @click=${() => window.d.close()} href="/bar/baz">baz</a>
+              `
+            }})
+          },
+          label: 'bar',
+          icon: admin
+        },
+        {
+          href: '/baz',
+          label: 'baz',
           icon: compass
         },
-        {
-          href: '/admin',
-          label: 'Admin',
-          icon: admin,
-          condition: () => false
-        },
-        {
-          href: '/bar',
-          label: 'Bar',
-          icon: location,
-          condition: () => true
-        },
+        // {
+        //   href: '/admin',
+        //   label: 'Admin',
+        //   icon: admin,
+        //   condition: () => false
+        // },
+        // {
+        //   href: '/bar',
+        //   label: 'Bar',
+        //   icon: location,
+        //   condition: () => true
+        // },
       ]
     </script>
   </body>
