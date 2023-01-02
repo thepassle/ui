@@ -100,3 +100,7 @@ dialog[app-tools]#context button {
 dialog[app-tools]#context button:last-child {
   margin-bottom: 0px;
 }
+
+dialog[app-tools]#context {
+  z-index: 10;
+}
