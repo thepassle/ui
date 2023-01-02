@@ -10,6 +10,9 @@ import {
   elevation4, 
   focus,
 
+  bg1,
+  bg2,
+  bg3,
   bg4,
   bg5,
   bg6,
@@ -64,6 +67,11 @@ export const button = css`
   button[ui-button][primary]:not([disabled]):active {
     background: ${main3};
   }
+
+  button[ui-button][primary][disabled] {
+    background: ${bg3};
+    color: ${bg6};
+  }
   
   /** Secondary */
   button[ui-button][secondary] {
@@ -87,6 +95,12 @@ export const button = css`
 
   button[ui-button][secondary]:not([disabled]):active {
     background: ${bg4};
+  }
+
+  button[ui-button][secondary][disabled] {
+    background: ${bg3};
+    color: ${bg6};
+    border: solid 1px ${bg2};
   }
 
   @media(max-width: 480px) {

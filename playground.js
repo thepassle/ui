@@ -160,11 +160,13 @@ class Playground extends LitElement {
         </button>
         ${this.count}
         <button ui-button primary @click=${() => {this.count+=1;}}>inc</button>
+        <button ui-button primary disabled>disabled</button>
         <button @click=${() => dialog.open({id: 'foo'})} ui-button primary>click</button>
         <button @click=${() => dialog.open({id: 'bar'})} ui-button secondary>click</button>
+        <button ui-button secondary disabled>disabled</button>
         <a ui-button-link primary href="/">link</a>
         <a ui-button-link secondary href="/">link</a>
-        <button ui-icon-button>${kebab}</button>
+        <button disabled ui-icon-button>${kebab}</button>
 
         <!-- <div ui-error>Something went wrong.</div> -->
 

@@ -3,6 +3,7 @@ import {
   spacer8, 
   spacer4, 
   neutral, 
+  bg3,
   bg4, 
   bg5, 
   focus
@@ -22,7 +23,7 @@ export const iconButton = css`
 
 
   button[ui-icon-button][disabled] {
-    fill: ${bg5};
+    fill: ${bg3};
   }
   
   button[ui-icon-button]:not([disabled]):hover,

@@ -41,6 +41,7 @@
       import { Router } from '@thepassle/app-tools/router.js';
 
       import { media } from '@thepassle/app-tools/utils/media.js';
+      import { waitUntil } from '@thepassle/app-tools/utils/async.js';
 
       function createViewTransitionPlugin(config = {
         prefix: 'APP-TOOLS'
@@ -125,9 +126,14 @@
         ]
       });
 
-      router.addEventListener('route-changed', ({context}) => {
+      router.addEventListener('route-changed', async ({context}) => {
+        await waitUntil(() => !!window.d);
+        
+        if(window.d.isOpen) {
+          await window.d.closed;
+        }
+        
         const main = document.querySelector('main');
-
         document.querySelector('ui-bottom-nav').activeLink = router.context.url.pathname;
 
         if (!document.startViewTransition || media.REDUCED_MOTION()) {
