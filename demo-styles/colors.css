@@ -1,0 +1,47 @@
+:root {
+  font-family: sans-serif;
+  color-scheme: dark;
+  --ui-neutral: rgb(255, 255, 255);
+
+  /* https://mdigi.tools/color-shades/#ffa600 */
+  --ui-main-0:#ffffff; 
+  --ui-main-1:#feeac5; 
+  --ui-main-2:#fedc9e; 
+  --ui-main-3:#fdce77; 
+  --ui-main-4:#fcc050; 
+  --ui-main-5:#fcb93c; 
+  --ui-main-6:#ca9430; 
+  --ui-main-7:#976f24; 
+  --ui-main-8:#654a18; 
+  --ui-main-9:#32250c; 
+  --ui-secondary-0:#ffffff; 
+  --ui-secondary-1:#c2def9; 
+  --ui-secondary-2:#9ac9f5; 
+  --ui-secondary-3:#71b3f0; 
+  --ui-secondary-4:#489dec; 
+  --ui-secondary-5:#3492ea; 
+  --ui-secondary-6:#2a75bb; 
+  --ui-secondary-7:#1f588c; 
+  --ui-secondary-8:#153a5e; 
+  --ui-secondary-9:#0a1d2f; 
+  --ui-error-0:#ffffff; 
+  --ui-error-1:#f9e2e8; 
+  --ui-error-2:#f5cfd8; 
+  --ui-error-3:#f0bbc8; 
+  --ui-error-4:#eca8b9; 
+  --ui-error-5:#ea9eb1; 
+  --ui-error-6:#bb7e8e; 
+  --ui-error-7:#8c5f6a; 
+  --ui-error-8:#5e3f47; 
+  --ui-error-9:#2f2023; 
+  --ui-bg-0:#ffffff; 
+  --ui-bg-1:#d3d4d7; 
+  --ui-bg-2:#b6b8bd; 
+  --ui-bg-3:#989ba2; 
+  --ui-bg-4:#7b7e87; 
+  --ui-bg-5:#6c707a; 
+  --ui-bg-6:#565a62; 
+  --ui-bg-7:#414349; 
+  --ui-bg-8:#2b2d31; 
+  --ui-bg-9:#161618;
+}

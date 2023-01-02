@@ -1,0 +1,36 @@
+#progress {
+  height: 4px;
+  width: 100%;
+  position: fixed;
+}
+
+progress {
+  height: 4px;
+  appearance: none;
+  border: none;
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes progress-loading {
+  50% {
+    background-position: left; 
+  }
+}
+
+progress:indeterminate::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+  background: linear-gradient(to right,
+    var(--ui-bg-5) 45%,
+    var(--ui-main-5) 0%,
+    var(--ui-main-5) 55%,
+    var(--ui-bg-5) 0%
+  );
+  background-size: 225% 100%;
+  background-position: right; 
+  animation: progress-loading 2.3s infinite ease;
+}

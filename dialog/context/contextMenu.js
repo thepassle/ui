@@ -21,7 +21,7 @@ export function contextMenu(config = {
       dialog.id = 'context';
       render(parameters.template(), dialog.form);
       
-      target = parameters.target.path.find(e => e.localName === 'button') || parameters.target;
+      target = parameters.target.composedPath().find(e => e.localName === 'button') || parameters.target;
       target.setAttribute('aria-expanded', 'true');
 
       if (!media.MAX.XS()) {

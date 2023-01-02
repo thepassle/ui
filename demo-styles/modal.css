@@ -1,0 +1,38 @@
+dialog[app-tools]#modal {
+  border-radius: 8px;
+  background: var(--ui-bg-6);
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 12%), 0 4px 4px 0 rgb(0 0 0 / 24%);
+  border: none;
+  /* padding: 16px; */
+  max-height: 700px;
+  height: fit-content;
+  width: 400px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.7);
+  transition: opacity .1s ease-out, transform .1s ease-out, scale .1s ease-out;
+}
+
+dialog[app-tools][version="1.x"]#modal > form[app-tools][version="1.x"] {
+  width: calc(100% - 32px);
+}
+
+dialog[app-tools]#modal > form[app-tools] {
+  padding: 16px;
+}
+
+dialog[app-tools][open]#modal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+dialog[app-tools]#modal::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 448px) {
+  dialog[app-tools]#modal {
+    width: calc(100% - 80px);
+    height: fit-content;
+    max-height: 70%;
+  }
+}

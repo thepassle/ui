@@ -1,5 +1,7 @@
 import { nothing, LitElement, css, html } from "lit";
 import { Dialog } from '@thepassle/app-tools/dialog.js';
+import { Api } from '@thepassle/app-tools/api.js';
+import { delay, delayPlugin } from '@thepassle/app-tools/api/plugins/delay.js';
 import { button } from './components/button/index.js';
 import { inlay } from './components/inlay/index.js';
 import { error } from './components/error/index.js';
@@ -15,6 +17,34 @@ import './components/disclosure/index.js';
 import './components/spinner/index.js';
 import './components/bottom-nav/index.js';
 import './components/card/index.js';
+
+function progress() {
+  const div = document.createElement('div');
+  div.id = 'progress';
+  let progress;
+  document.body.prepend(div);
+  // progress = document.createElement('progress');
+  // progress.setAttribute('indeterminate', '')
+  // div.appendChild(progress);
+  return {
+    name: 'progress',
+    beforeFetch: () => {
+      progress = document.createElement('progress');
+      div.appendChild(progress);
+    },
+    afterFetch: (r) => {
+      progress.remove();
+      return r;
+    }
+  }
+}
+
+const api = new Api({
+  plugins: [
+    delayPlugin(4000),
+    progress()
+  ]
+});
 
 const dialog = new Dialog({
   context: contextMenu(),
@@ -47,7 +77,9 @@ class Playground extends LitElement {
     button, buttonLink, iconButton, error, inlay,
     css`
       :host {
-        padding-bottom: 200px;
+        display: block;
+        padding-top: 40px;
+        padding-bottom: 100px;
       }
 
       footer {
@@ -75,7 +107,6 @@ class Playground extends LitElement {
   render() {
     return html`
       <main>
-        <ui-spinner></ui-spinner>
         <ui-card label="hello">
           <p>foo</p>
           <p>foo</p>
@@ -84,6 +115,7 @@ class Playground extends LitElement {
         <ui-disclosure>
           <div slot="label">click</div>
           <div ui-inlay slot="detail">
+            <button ui-button primary @click=${() => {api.get('https://pokeapi.co/api/v2/pokemon/')}}>api call</button>
             <p>foo</p>
             <p>foo</p>
             <p>foo</p>
