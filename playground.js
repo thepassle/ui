@@ -6,6 +6,7 @@ import { button } from './components/button/index.js';
 import { inlay } from './components/inlay/index.js';
 import { error } from './components/error/index.js';
 import { buttonLink } from './components/button-link/index.js';
+import { input } from './components/input/index.js';
 import { iconButton } from './components/icon-button/index.js';
 import { kebab, shop, compass, admin, location } from './icons/index.js';
 import { contextMenu } from './dialog/context/contextMenu.js';
@@ -54,6 +55,11 @@ const dialog = new Dialog({
     import: () => new Promise(r => setTimeout(r, 1000)),
     render: () => html`<p>hello foo</p>`
   }),
+  login: modal({
+    title: 'Login',
+    import: () => import('./login.js'),
+    render: () => html`<login-el></login-el>`
+  }),
   bar: modal({
     title: 'bar',
     import: () => Promise.reject(),
@@ -74,7 +80,7 @@ class Playground extends LitElement {
   }
 
   static styles = [
-    button, buttonLink, iconButton, error, inlay,
+    button, buttonLink, iconButton, error, inlay, input,
     css`
       :host {
         display: block;
@@ -167,6 +173,43 @@ class Playground extends LitElement {
         <a ui-button-link primary href="/">link</a>
         <a ui-button-link secondary href="/">link</a>
         <button disabled ui-icon-button>${kebab}</button>
+
+        <button @click=${() => dialog.open({id: 'login'})} ui-button primary>login</button>
+
+        <label ui-label>
+          <input ui-input
+            type="text"
+            placeholder=""
+          />
+          <span>Default</span>
+        </label>
+
+        <label ui-label>
+          <input ui-input
+            type="text"
+            placeholder=""
+            pattern="[a-z]+"
+            value="5"
+          />
+          <span>invalid</span>
+        </label>
+
+        <label ui-label>
+          <input ui-input
+            required
+            type="text"
+          />
+          <span>required</span>
+        </label>
+
+        <label ui-label>
+          <input ui-input
+            type="text"
+            placeholder=""
+            ?disabled=${true}
+          />
+          <span>Disabled</span>
+        </label>
 
         <!-- <div ui-error>Something went wrong.</div> -->
 

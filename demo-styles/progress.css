@@ -1,11 +1,11 @@
 #progress {
-  height: 4px;
+  height: 3px;
   width: 100%;
   position: fixed;
 }
 
 progress {
-  height: 4px;
+  height: 3px;
   appearance: none;
   border: none;
   width: 100%;

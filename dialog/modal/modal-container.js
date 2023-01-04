@@ -63,7 +63,7 @@ class ModalContainer extends LitElement {
       ${when(this.state === 'success', () => this.template)}
       ${when(this.state === 'error', () => html`<div ui-error>Something went wrong.</div>`)}
 
-      <button @click=${this.dialog.close.bind(this.dialog)} ui-button secondary value="close">close</button>
+      <button @click=${this.dialog.close.bind(this.dialog)} ui-button secondary value="close">Close</button>
     `;
   }
 }

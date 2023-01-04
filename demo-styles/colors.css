@@ -2,8 +2,8 @@
   font-family: sans-serif;
   color-scheme: dark;
   --ui-neutral: rgb(255, 255, 255);
+  /* https://uicolors.app/create */
 
-  /* https://mdigi.tools/color-shades/#ffa600 */
   --ui-main-0:#ffffff; 
   --ui-main-1:#feeac5; 
   --ui-main-2:#fedc9e; 

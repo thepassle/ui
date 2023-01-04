@@ -1,7 +1,7 @@
 import { render } from 'lit';
 import { media } from '@thepassle/app-tools/utils/media.js';
 import { debounceAtFrame } from '@thepassle/app-tools/utils/async.js';
-import { compute } from './positioning.js';
+// import { compute } from './positioning.js';
 import { FOCUSABLE_ELEMENTS, KEYCODES } from './CONSTANTS.js';
 
 /**
@@ -25,6 +25,7 @@ export function contextMenu(config = {
       target.setAttribute('aria-expanded', 'true');
 
       if (!media.MAX.XS()) {
+        const { compute } = await import('./positioning.js');
         await compute(target, dialog);
       }
 
@@ -71,6 +72,7 @@ export function contextMenu(config = {
       
       handleResize = debounceAtFrame(async () => {
         if(!media.MAX.XS()) {
+          const { compute } = await import('./positioning.js');
           await compute(target, dialog);
         } else {
           Object.assign(dialog.style, {

@@ -24,30 +24,8 @@ dialog[app-tools]#context::backdrop {
     height: fit-content;
     max-height: 350px;
   }
-
-  dialog[app-tools]#context a {
-    color: var(--ui-neutral);
-    display: block;
-    padding: 20px 12px;
-    border-radius: 8px;
-  }
-
-  dialog[app-tools]#context a:hover {
-    background: var(--ui-bg-5);
-  }
-
-  dialog[app-tools]#context a:active,
-  dialog[app-tools]#context a:focus-visible {
-    background: var(--ui-bg-4);
-  }
-
-  dialog[app-tools]#context a:focus-visible {
-    border-radius: 4px;
-    box-shadow: var(--ui-secondary-4) 0px 0px 12px, var(--ui-secondary-4) 0px 0px 0px 3px;
-    outline: 1px;
-    transition: box-shadow 0.1s ease-in-out 0s;
-  }
 }
+
 
 
 @media (min-width: 480px) {
@@ -56,11 +34,25 @@ dialog[app-tools]#context::backdrop {
     height: min-content;
     opacity: 0;
     transform: scale(0.7);
-    transform-origin: top right;
     transition: opacity .1s ease-out, transform .1s ease-out, scale .1s ease-out;
     border-radius: 8px;
     border: none;
     background-color: var(--ui-bg-6);
+    inset: 0 auto auto 0;
+    position: absolute;
+  }
+
+  .top-right {
+    transform-origin: top right;
+  }
+  .top-left {
+    transform-origin: top left;
+  }
+  .bottom-right {
+    transform-origin: bottom right;
+  }
+  .bottom-left {
+    transform-origin: bottom left;
   }
 
   dialog[app-tools][open]#context {
@@ -69,9 +61,16 @@ dialog[app-tools]#context::backdrop {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  dialog[app-tools]#context {
+    transition: none;
+  }
+}
+
+
 /**
-  * Non required context styles
-  */
+ * Non required context button styles
+ */
 dialog[app-tools]#context button:hover {
   background: var(--ui-bg-5);
 }
@@ -101,6 +100,33 @@ dialog[app-tools]#context button:last-child {
   margin-bottom: 0px;
 }
 
+/**
+ * Non required context anchor styles
+ */
+dialog[app-tools]#context a {
+  color: var(--ui-neutral);
+  display: block;
+  padding: 20px 12px;
+  border-radius: 8px;
+}
+
+dialog[app-tools]#context a:hover {
+  background: var(--ui-bg-5);
+}
+
+dialog[app-tools]#context a:active,
+dialog[app-tools]#context a:focus-visible {
+  background: var(--ui-bg-4);
+}
+
+dialog[app-tools]#context a:focus-visible {
+  border-radius: 4px;
+  box-shadow: var(--ui-secondary-4) 0px 0px 12px, var(--ui-secondary-4) 0px 0px 0px 3px;
+  outline: 1px;
+  transition: box-shadow 0.1s ease-in-out 0s;
+}
+
+/** Override z-index of bottom-nav */
 dialog[app-tools]#context {
   z-index: 10;
 }
