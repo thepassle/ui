@@ -1,8 +1,8 @@
 import { render } from 'lit';
 import { media } from '@thepassle/app-tools/utils/media.js';
 import { debounceAtFrame } from '@thepassle/app-tools/utils/async.js';
-// import { compute } from './positioning.js';
-import { FOCUSABLE_ELEMENTS, KEYCODES } from './CONSTANTS.js';
+import { KEYCODES } from '@thepassle/app-tools/utils/keycodes.js';
+import { FOCUSABLE_ELEMENTS } from './CONSTANTS.js';
 
 /**
  * @param {{

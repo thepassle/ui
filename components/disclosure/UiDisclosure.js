@@ -5,9 +5,12 @@ import {
   spacer16, 
   main5, 
   neutral, 
+  bg2,
+  bg3,
   bg4, 
   bg5, 
   bg6, 
+  bg7,
   borderRadius,
   focus,
 } from '../../style.js';
@@ -37,7 +40,7 @@ export class UiDisclosure extends LitElement {
       display: block;
       width: 100%;
       height: auto;
-      border-bottom: lightgrey solid 1px;
+      border-bottom: ${bg4} solid 1px;
       background-color: ${bg6};
     }
     :host([expanded]) {
@@ -93,11 +96,11 @@ export class UiDisclosure extends LitElement {
 
     button:hover,
     button:focus-visible {
-      background-color: ${bg5};
+      background: ${bg5};
     }
 
     button:active {
-      background-color: ${bg4};
+      background: ${bg4};
     }
 
     button:focus-visible {

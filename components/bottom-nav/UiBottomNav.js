@@ -31,7 +31,7 @@ export class UiBottomNav extends LitElement {
     }
     
     
-    .header {
+    header {
       display: flex;
       justify-content: center;
       height: 100%;
@@ -78,6 +78,11 @@ export class UiBottomNav extends LitElement {
       position: relative;
     }
 
+    nav ul li a {
+      text-decoration: underline;
+      text-underline-offset: 1px;
+    }
+
     .notification-dot {
       right: 24px;
       top: 4px;
@@ -94,6 +99,11 @@ export class UiBottomNav extends LitElement {
     nav ul li a:focus-visible {
       background-color: ${bg5};
       border-radius: 10px;
+    }
+    
+    nav ul li a:hover,
+    nav ul li a:focus-visible {
+      text-underline-offset: 3px;
     }
 
     nav ul li button:active,
@@ -132,7 +142,6 @@ export class UiBottomNav extends LitElement {
 
     return html`
       <header>
-        <div class="header">
           <nav>
             <ul>
               ${this.menu?.map((item) => html`
@@ -161,7 +170,7 @@ export class UiBottomNav extends LitElement {
               `)}
             </ul>
           </nav>
-        </div>
+
       </header>
     `;
   }

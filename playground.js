@@ -16,6 +16,7 @@ import { modal } from './dialog/modal/index.js';
 import './theme/theme.js';
 import './components/disclosure/index.js';
 import './components/spinner/index.js';
+import './components/switch/index.js';
 import './components/bottom-nav/index.js';
 import './components/card/index.js';
 
@@ -152,6 +153,11 @@ class Playground extends LitElement {
           <p>foo</p>
           <p>foo</p>
         </ui-card>
+        <ui-switch>Enable foo function</ui-switch>
+        <ui-switch checked>Enable bar functionality</ui-switch>
+        <ui-switch @checked-changed=${({checked}) => console.log(checked)}>Toggle foo status</ui-switch>
+        <ui-switch disabled>Undisable disabled state</ui-switch>
+        <ui-switch checked disabled>Undisable disabled state</ui-switch>
         <div ui-inlay>sadfhaksjdfh</div>
         <button 
           slot="icon" 

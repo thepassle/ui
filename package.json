@@ -31,7 +31,7 @@
   "dependencies": {
     "@floating-ui/dom": "^1.1.0",
     "@generic-components/components": "^1.1.8",
-    "@thepassle/app-tools": "^0.8.0",
+    "@thepassle/app-tools": "^0.8.4",
     "lit": "^2.5.0"
   }
 }

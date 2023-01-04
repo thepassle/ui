@@ -1,4 +1,4 @@
-import { computePosition, flip, detectOverflow } from "@floating-ui/dom";
+import { computePosition, detectOverflow } from "@floating-ui/dom";
 
 export async function compute(target, dialog) {
   let { x, y } = await computePosition(target, dialog, { 
@@ -13,18 +13,27 @@ export async function compute(target, dialog) {
           const left = Math.abs(overflow.left);
           const right = Math.abs(overflow.right);
 
+          let vertical = 'bottom';
           let horizontal;
 
           if(left > right) {
-            horizontal = 'right';
-            newPlacement = 'bottom-end';
+            horizontal = 'end';
           } else {
-            horizontal = 'left';
-            newPlacement = 'bottom-start';
+            horizontal = 'start';
           }
 
-          dialog.classList.add(`top-${horizontal}`);
-          if(placement !== 'bottom-end' && placement !== 'bottom-start') {
+          if(overflow.bottom > 0) {
+            vertical = 'top';
+          }
+
+          newPlacement = `${vertical}-${horizontal}`;
+          dialog.classList.add(newPlacement);
+          if(
+            placement !== 'bottom-end' && 
+            placement !== 'bottom-start' && 
+            placement !== 'top-end' && 
+            placement !== 'top-start'
+          ) {
             return {
               reset: {
                 placement: newPlacement
@@ -34,7 +43,6 @@ export async function compute(target, dialog) {
           return {}
         }
       },
-      flip()
     ],
   });
 

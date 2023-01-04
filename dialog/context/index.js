@@ -1,5 +1,5 @@
 import { nothing } from 'lit';
-import { KEYCODES } from './CONSTANTS.js';
+import { KEYCODES } from '@thepassle/app-tools/utils/keycodes.js';
 import { Directive, directive } from 'lit/directive.js';
 
 class Context extends Directive {

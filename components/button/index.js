@@ -98,9 +98,9 @@ export const button = css`
   }
 
   button[ui-button][secondary][disabled] {
-    background: ${bg3};
-    color: ${bg6};
-    border: solid 1px ${bg2};
+    background: ${bg6};
+    color: ${bg3};
+    border: solid 1px ${bg3};
   }
 
   @media(max-width: 480px) {
